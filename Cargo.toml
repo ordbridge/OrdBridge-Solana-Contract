@@ -1,0 +1,17 @@
+[workspace]
+members = [
+    "programs/*"
+]
+
+[profile.release]
+overflow-checks = true
+codegen-units = 1
+opt-level = 'z'  # This sets the optimization level to 'z', which prioritizes size over speed
+lto = "thin"     # Use "thin" LTO for a smaller binary
+panic = "abort"  # Consider using panic=abort to remove unwinding information and reduce binary size
+
+
+[profile.release.build-override]
+opt-level = 'z'
+incremental = false
+codegen-units = 1
